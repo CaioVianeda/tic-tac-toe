@@ -16,5 +16,5 @@ export const checkWinner = (board:string[]) => {
           return board[a];
         }
       }
-      return null; // Nenhum vencedor
+      return board.some((item) => item === "") ? null : "XO";
 }
