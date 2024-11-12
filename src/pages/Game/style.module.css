@@ -13,8 +13,8 @@
 }
 
 .row{
-    height: 350px;
-    width: 1050px;
+    height: 250px;
+    width: 750px;
     display: flex;
     align-items: center;
     justify-content: center;

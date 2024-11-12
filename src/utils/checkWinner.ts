@@ -12,9 +12,14 @@ export const checkWinner = (board:string[]) => {
     
       for (let combo of winningCombinations) {
         const [a, b, c] = combo;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-          return board[a];
+        const values = [board[a], board[b], board[c]];
+
+        if (values.every(val => val === "X" || val === "E")) {
+          return "X";
+        }
+        if (values.every(val => val === "O" || val === "E")) {
+          return "O";
         }
       }
-      return board.some((item) => item === "") ? null : "XO";
+      return board.some((item) => item === "") ? null : "E";
 }

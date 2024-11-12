@@ -25,12 +25,11 @@ const Game = () => {
     setTurn("X");
   };
 
-  const handleMove = (position: number) => {
-    if (positions[position] !== "" || winner) return;
+  const handleWinnerCell = (position: number, winner: string) => {
     const newPositions = [...positions];
-    newPositions[position] = turn;
+    newPositions[position] = winner;
     setPositions(newPositions);
-    setTurn(turn === "X" ? "O" : "X");
+    // setTurn(turn === "X" ? "O" : "X");
   };
 
   useEffect(() => {
@@ -39,43 +38,44 @@ const Game = () => {
       alert(`Vencedor: Jogador ${winner}`);
       setWinner(winner);
     }
+    console.log(positions);
   }, [positions]);
 
   return (
     <div className={style["game-container"]}>
-      <h1 className={style["game-title"]}>Tic-Tac-Toe</h1>
+      <h1 className={style["game-title"]}>Tic-Tac-Toe 2</h1>
       <div className={style["board"]}>
         <div className={style["row"]}>
           <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={0} handleWinnerCell={handleWinnerCell}/>
           </div>
           <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={1} handleWinnerCell={handleWinnerCell}/>
           </div>
           <div className={style["cell"]}>
-            <SecondaryBoard />
-          </div>
-        </div>
-        <div className={style["row"]}>
-          <div className={style["cell"]}>
-            <SecondaryBoard />
-          </div>
-          <div className={style["cell"]}>
-            <SecondaryBoard />
-          </div>
-          <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={2} handleWinnerCell={handleWinnerCell} />
           </div>
         </div>
         <div className={style["row"]}>
           <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={3} handleWinnerCell={handleWinnerCell} />
           </div>
           <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={4} handleWinnerCell={handleWinnerCell} />
           </div>
           <div className={style["cell"]}>
-            <SecondaryBoard />
+            <SecondaryBoard position={5} handleWinnerCell={handleWinnerCell} />
+          </div>
+        </div>
+        <div className={style["row"]}>
+          <div className={style["cell"]}>
+            <SecondaryBoard position={6} handleWinnerCell={handleWinnerCell} />
+          </div>
+          <div className={style["cell"]}>
+            <SecondaryBoard position={7} handleWinnerCell={handleWinnerCell}/>
+          </div>
+          <div className={style["cell"]}>
+            <SecondaryBoard position={8} handleWinnerCell={handleWinnerCell}/>
           </div>
         </div>
       </div>

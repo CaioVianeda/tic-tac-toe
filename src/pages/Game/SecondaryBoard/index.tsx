@@ -3,7 +3,12 @@ import style from "./style.module.css";
 import { checkWinner } from "../../../utils/checkWinner";
 import PentagonIcon from '@mui/icons-material/Pentagon';
 
-const SecondaryBoard = () => {
+interface Props{
+    position: number,
+    handleWinnerCell: (position: number, winner: string) => void
+}
+
+const SecondaryBoard = ({position, handleWinnerCell}: Props) => {
   const [positions, setPositions] = useState([
     "",
     "",
@@ -19,12 +24,6 @@ const SecondaryBoard = () => {
   const [turn, setTurn] = useState("X");
   const [winner, setWinner] = useState<string | undefined>(undefined);
 
-  const reset = () => {
-    setPositions(Array(9).fill(""));
-    setWinner(undefined);
-    setTurn("X");
-  };
-
   const handleMove = (position: number) => {
     if (positions[position] !== "" || winner) return;
     const newPositions = [...positions];
@@ -37,6 +36,7 @@ const SecondaryBoard = () => {
     const winner = checkWinner(positions);
     if (winner) {
       setWinner(winner);
+      handleWinnerCell(position, winner);
     }
   }, [positions]);
 
@@ -78,7 +78,7 @@ const SecondaryBoard = () => {
            </div>
          </div>
        </> :
-       <div style={{fontSize: "200px"}}>{winner === "XO"  ? <PentagonIcon sx={{width: "200px", height: "200px"}}/> : winner}</div>}
+       <div style={{fontSize: "200px"}}>{winner === "E"  ? <PentagonIcon sx={{width: "200px", height: "200px"}}/> : winner}</div>}
       </div>
 
   );    
