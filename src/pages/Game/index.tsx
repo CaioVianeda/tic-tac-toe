@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./style.module.css";
+import { checkWinner } from "../../utils/checkWinner";
 
 const Game = () => {
   const [positions, setPositions] = useState([
@@ -23,6 +24,13 @@ const Game = () => {
     setPositions(newPositions);
     setTurn(turn === "X" ? "O" : "X");
   };
+
+  useEffect(() => {
+    const winner = checkWinner(positions);
+    if(winner){
+      alert("Vencedor: " + winner);
+    }
+  }, [positions])
 
   return (
     <div className={style["game-container"]}>
